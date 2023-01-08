@@ -13,6 +13,7 @@
 <body>
     <div id="wrapper">
         <div class="contentdiv">
+            <!-- sadljflasdsdjflksadjflkasd -->
             <h2 class="question">Question Comes Here</h2> 
             <ul>
                 <li>
@@ -33,9 +34,10 @@
                 </li>
             </ul>
             <input type="submit" value="submit" id="submit">
-            <div class="result" id="showscore">
-
+            
+            
             </div>
+            <div class="result" id="showscore"></div>
         </div>
       
     </div>
@@ -53,7 +55,7 @@
                     },{
                          question:'Q2: What is full form of JS?',
                          a:'jason smart',
-                         b:'java script',
+                         b:'javascript',
                          c:'java smart',
                          d:'jason shoes',
                          ans: 'ans2'
@@ -73,7 +75,10 @@
                         d:'Nagaur',
                         ans:'ans1'
                     }
+                
             ]
+
+            
             let question = document.querySelector('.question')
             let option = document.querySelectorAll('.option')
             let option1 = document.querySelector('#option1')
@@ -82,6 +87,8 @@
             let option4 = document.querySelector('#option4')
             let submit = document.querySelector('#submit')
             let result  = document.querySelector('.result')
+            let content = document.querySelector('.contentdiv')
+            
             
                 
             let questioncount = 0 ;
@@ -127,11 +134,14 @@
                         loadquestion();
                        
                     }
-                    
                     else{
                         result.innerHTML = `<h3> you scored ${score}/${quiz.length} ✌️</h3>
                         <button class = 'btn' onclick = 'location.reload()'>play again</button>`;
-                        result.style.display = 'block';
+
+                        result.style.display = 'block '
+                        content.style.display='none';
+                        
+                        
                     }
                     
 
