@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@700&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <title>Quiz</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="contentdiv">
+            <h2 class="question">Question Comes Here</h2> 
+            <ul>
+                <li>
+                    <input type="radio" name="opt" id="ans1" class="option">
+                    <label for="ans1" id="option1">Option1</label>
+                </li>
+                <li>
+                    <input type="radio" name="opt" id="ans2" class="option">
+                    <label for="ans2" id="option2">Option2</label>
+                </li>
+                <li>
+                    <input type="radio" name="opt" id="ans3" class="option">
+                    <label for="ans3" id="option3">Option3</label>
+                </li>
+                <li>
+                    <input type="radio" name="opt" id="ans4" class="option">
+                    <label for="ans4" id="option4">Option4</label>
+                </li>
+            </ul>
+            <input type="submit" value="submit" id="submit">
+            <div class="result" id="showscore">
+
+            </div>
+        </div>
+      
+    </div>
+    <script>
+            const quiz = [
+                    {
+                        question:'Q1:What is full form of HTML?',
+                        a:'hyper text moller longtitude',
+                        b:'hyper text modern language',
+                        c:'hyper text markup language',
+                        d:'none of these',
+                        ans:'ans3'
+                        
+
+                    },{
+                         question:'Q2: What is full form of JS?',
+                         a:'jason smart',
+                         b:'java script',
+                         c:'java smart',
+                         d:'jason shoes',
+                         ans: 'ans2'
+                    },{
+                        question:'Q3: What is the capital of India?',
+                        a:'rajasthan',
+                        b:'Bihar',
+                        c:'Punjab',
+                        d:'Dehli',
+                        ans:'ans4'
+                    },
+                    {
+                        question: 'Q4:Which one is known as pink city?',
+                        a:'Jaipur',
+                        b:'nagpur',
+                        c:'Jaisalmer',
+                        d:'Nagaur',
+                        ans:'ans1'
+                    }
+            ]
+            let question = document.querySelector('.question')
+            let option = document.querySelectorAll('.option')
+            let option1 = document.querySelector('#option1')
+            let option2 = document.querySelector('#option2')
+            let option3 = document.querySelector('#option3')
+            let option4 = document.querySelector('#option4')
+            let submit = document.querySelector('#submit')
+            let result  = document.querySelector('.result')
+            
+                
+            let questioncount = 0 ;
+            let score = 0;
+            const loadquestion = ()=>{
+
+                let updatequestion = quiz[questioncount]
+                question.innerHTML = updatequestion.question
+                option1.innerHTML = updatequestion.a
+                option2.innerHTML = updatequestion.b
+                option3.innerHTML = updatequestion.c
+                option4.innerHTML = updatequestion.d
+
+
+            }
+
+            const getcheckanswer = ()=>{
+                let answer;
+                option.forEach((question)=>{
+                    if(question.checked){
+                        answer = question.id;
+                    }
+                });
+                return answer;
+            }
+
+            const deselectAll = ()=>{
+                option.forEach((currentElement)=>{
+                    currentElement.checked =false;
+                })
+            }
+            
+
+            submit.addEventListener('click', ()=>{
+                    const rightanswer = getcheckanswer();
+                    if(rightanswer === quiz[questioncount].ans){
+                        score++;
+                    }
+                    questioncount++;
+                    deselectAll();
+                    
+                    if(questioncount < quiz.length){
+                        loadquestion();
+                       
+                    }
+                    
+                    else{
+                        result.innerHTML = `<h3> you scored ${score}/${quiz.length} ✌️</h3>
+                        <button class = 'btn' onclick = 'location.reload()'>play again</button>`;
+                        result.style.display = 'block';
+                    }
+                    
+
+                    
+            });
+
+
+
+            loadquestion();
+
+
+    </script>
+    
+</body>
+</html>
